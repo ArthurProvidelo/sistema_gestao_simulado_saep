@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar empresa</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+
+    <h1>Editar empresa</h1>
+
+    <a href="/empresas/listar">Voltar</a>
+
+    @foreach($errors->all() as $erro)
+        <p>{{ $erro }}</p>
+    @endforeach
+
+    <form action="/empresas/{{ $empresa->id }}" method="POST">
+        @csrf
+        @method('PUT')
+
+        <label>Nome:</label>
+        <input type="text" name="nome" value="{{ old('nome', $empresa->nome) }}">
+        <br><br>
+
+        <label>CNPJ:</label>
+        <input type="text" name="cnpj" value="{{ old('cnpj', $empresa->cnpj) }}" maxlength="18">
+        <br><br>
+
+        <label>Telefone:</label>
+        <input type="text" name="telefone" value="{{ old('telefone', $empresa->telefone) }}">
+        <br><br>
+
+        <label>E-mail:</label>
+        <input type="email" name="email" value="{{ old('email', $empresa->email) }}">
+        <br><br>
+
+        <button type="submit">Atualizar</button>
+    </form>
+
+</body>
+</html>
